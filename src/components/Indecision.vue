@@ -1,14 +1,15 @@
 <template>
   <div>
-      <h1>Let the computer helps to you</h1>
+      <h1>Let the computer help you choose</h1>
       
       <input v-model="option" placeholder="Enter option">
       <button  v-on:click="addOption()" >Add</button>
-      <ul id="example-1">
+      <ul id="options">
             <li v-for="item in options" v-bind:key="item">
                 {{ item }}
             </li>
         </ul>
+        <button v-if="options.length>0" v-on:click="randomOption()">What should I do?</button>
   </div>
 </template>
 
@@ -31,6 +32,12 @@ export default {
 
             this.option=''
             
+        },
+        randomOption(){                
+
+                let choose = Math.floor(Math.random() * this.options.length);                
+                alert(this.options[choose])
+                
         }
     },
 }
